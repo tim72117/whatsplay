@@ -12,9 +12,22 @@
 */
 
 Route::get('/', function () {
+    return DB::table('oauth_clients')->get();
     return view('welcome');
 });
 
-Route::get('/user', function () {
-    return new App\Http\Resources\User(App\User::find(1));
+Route::get('/users', function () {
+    return App\User::create(['name' => 'tim72117', 'password' => Hash::make(123456), 'email' => 'tim72117@gmail.com']);
 });
+
+Route::get('/region/{region_id}/plays', function ($region_id) {
+    return App\Region::findOrFail($region_id)->plays;
+});
+
+Route::get('/play/{play_id}/visits', function ($play_id) {
+    return App\Play::findOrFail($play_id)->visits;
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

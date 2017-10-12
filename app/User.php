@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,8 +28,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
+    public function plays()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->hasMany(Play::class);
+    }
+
+    public function visits()
+    {
+        return $this->belongsToMany(Play::class, 'play_visit')->using(PlayVisit::class)->withPivot('match');
     }
 }

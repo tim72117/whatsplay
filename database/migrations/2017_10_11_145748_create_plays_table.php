@@ -15,6 +15,7 @@ class CreatePlaysTable extends Migration
     {
         Schema::create('plays', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->integer('region_id');
             $table->timestamps();
         });
