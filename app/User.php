@@ -28,13 +28,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function plays()
+    public function games()
     {
-        return $this->hasMany(Play::class);
+        return $this->hasMany(Game::class);
     }
 
     public function visits()
     {
-        return $this->belongsToMany(Play::class, 'play_visit')->using(PlayVisit::class)->withPivot('match');
+        return $this->belongsToMany(Game::class, 'play_visit')->using(PlayVisit::class)->withPivot('match');
     }
 }

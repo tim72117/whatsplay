@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Play extends Model
+class Game extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,6 +13,15 @@ class Play extends Model
      */
      protected $fillable = [
         'region_id',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'user_id',
     ];
 
     public function visits()

@@ -15,8 +15,8 @@ class Region extends Model
         'title',
     ];
 
-    public function plays()
+    public function games()
     {
-        return $this->hasMany(Play::class);
+        return $this->hasMany(Game::class);
     }
 }

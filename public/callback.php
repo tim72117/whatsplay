@@ -21,7 +21,7 @@ app = angular.module('app', ['jsonFormatter'])
         method: api.method,
         url: '/api' + url,
         headers: {
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjE5YzNiYmRiMDU1ODJlOGE3NTNiYTUxNjkxMjcyMWEyNjE0NjI3NDE2ZTc2ZWMzZTY4MTFlNWIyZWM4Yjg2M2RhMTU0ODhlZjdmMjZjMmM5In0.eyJhdWQiOiIyIiwianRpIjoiMTljM2JiZGIwNTU4MmU4YTc1M2JhNTE2OTEyNzIxYTI2MTQ2Mjc0MTZlNzZlYzNlNjgxMWU1YjJlYzhiODYzZGExNTQ4OGVmN2YyNmMyYzkiLCJpYXQiOjE1MDc4MDA5OTMsIm5iZiI6MTUwNzgwMDk5MywiZXhwIjoxNTM5MzM2OTkzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.ehTDX3JkLwyXluZyy_HSwTzFBhcDs7A5ma3O7Ry169QOzk9MKDXnE0sFy0xMA-YC3j9GUbeHbP9FuiKRMn1zF7uIGUM2tSfvE7kjrF0-AeLBnHPcVx1jIcYiWfHOHdIcVh5Yy_ELe8iFcSiDvgC1qqy2Kn37np04hx0c5Hx2MaqA69O1yrPUWVObCs5QgoKub6KRL-C-IJR3ex-NpVLrlmBQS8Qt-HSVz3b0jQOnOLFyJaLcMjogd-Mu6z6JNqr_TvUfyvhZpTUgHs3GB_jeC9hzePGUAZ-ls84-l9zP6Clz6H2RKIMluhnv692JdC9AT12QMvrDfouerP5IrhwZaJT7Z15IYWePn1p9dN2ClgVOFoWH_wQxbXl6RODV82OKaICr7hlLqBFeLlORv5uTEfX7ClWvEzwzNQObX86UMTkS8a4I41bxjdnFLHLdLbet6MNSQ5YWfhzi3cTc6xXD2Viz8GUweSnWPEYY8dPA0dzrtHf4JQJP3K5HPFO44YYRRgE9k8_DyskAyRCZGvyfkCESq90yCJnXZu0eLEf6d-3zFiutKbisGQt4h1veVJPMcaPlBvdm_YPjrcKZp-2wAEtbvchfloixVQzmVtZyJEOFycXgyDb38soQfs6CieOOxXTG9ZLQX4JehDO6-Jm9UKcnta_V6qGpJxUIohCj6tQ'
+            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImY0N2I2NzZkMDRiNmNmMGRiNmNhNTY1ZTdjOTY1ZDI2ZjEyMzM5OWIyMjI0MjAwNzZmYTlhZjk5ZDQ5YTZiM2Y3ZjY5YTJiNGQ0ODA5N2ZhIn0.eyJhdWQiOiIyIiwianRpIjoiZjQ3YjY3NmQwNGI2Y2YwZGI2Y2E1NjVlN2M5NjVkMjZmMTIzMzk5YjIyMjQyMDA3NmZhOWFmOTlkNDlhNmIzZjdmNjlhMmI0ZDQ4MDk3ZmEiLCJpYXQiOjE1MDc4NjM3NTMsIm5iZiI6MTUwNzg2Mzc1MywiZXhwIjoxNTM5Mzk5NzUyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.XLZxLtMIsAGa5MdIG5FJERe5XolBV01NsuQOfz1F-4uJmFj0CrwblRDMj7ERhPpCkYFvDcMoA5utIYgB0VIFAtZ8VSd5qeBplp8XWnnl-HZ2TXi_NN0eA58Ue3bgvGsJqCAjzE-IhMFCttxgwnP753BrV_-tgAxaHqkUkYkbRbxIW-neNhcNLonpQXgAro5lkW7dBegw6sPhrlJRtqUB0s-L_bOsxhxVt0-iqDSBoWEupWhIsTfZJ7q3pDq1pFZmYNmWkXWng8INlTRCR05EkWOsKPDbuYYcmYNTE2EGYLxmMJMbmk82hnIQgocKLHuG_Nhj63sYZN7Y6h-SG_TQjgxskDFE2APXDrHENG0e-x9jiol7mpjXrFK8eqHoFyIu6K27Wl3w0PRGr77xcSqKcFM5Z1uXFlEs2ctkwmDqxbpHR36loD_V__zi0DuAJb4JpZ8oHw9eF5B1irSc2lxHkmIHX-jOC8eeSD9Zt_ZvD0FQvqqqvpwNze-546E28fq-vWbkaIo7bPpXpE-D6rAv0MWetuUin1wHNhnmk9-r7vW5QfQgthTfdlHLsXRO3P8E3U2LHV8_-pHXpEAY-Zs3v0IOohluTIILirDRWuhBkeToLwdgu6KRUmD6ZP72G1I6GSEz0iBqnuJKxUzWT6Mj4EY4ce9dtz8iTmw1LWpvUYI'
         },
         data: {}
         }).then(function(response) { $scope.data = response.data; });
@@ -30,24 +30,39 @@ app = angular.module('app', ['jsonFormatter'])
     $scope.input = [];
     $scope.apis = [
         {
-            'url': '/me/visit/plays',
+            'url': '/my/games',
             'method': 'GET'
         },
         {
-            'url': '/me/plays',
+            'url': '/my/visit/games',
             'method': 'GET'
         },
         {
-            'url': '/me/visit/play/{play_id}',
+            'url': '/my/games',
+            'method': 'GET'
+        },
+        {
+            'url': '/my/visit/game/{game_id}',
             'method': 'POST',
             'options': [
-                'play_id'
+                'game_id'
             ],
             'setter': function(api) {
                 console.log($scope.input);
-                 return '/me/visit/play/' + $scope.input[this.options[0]]
+                 return '/my/visit/game/' + $scope.input[this.options[0]]
             }
-        }
+        },
+        {
+            'url': '/my/region/{region_id}/games',
+            'method': 'POST',
+            'options': [
+                'region_id'
+            ],
+            'setter': function(api) {
+                 return '/my/region/' + $scope.input[this.options[0]] + '/games'
+            }
+        },
+
     ];
 });
     </script>
