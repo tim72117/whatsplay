@@ -21,6 +21,16 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->group(function () {
     /**
+     * @api {post} /my/region/:id/games Create game in region
+     * @apiDescription 新增區域的比賽
+     * @apiName PostMyRegionGames
+     * @apiGroup Game
+     * @apiParam (id) {Number} id Regions unique ID.
+     * @apiUse Games
+     */
+    Route::post('/my/region/{region_id}/games', 'GameController@create');
+
+    /**
      * @api {get} /my/games Get my games
      * @apiDescription 取得使用者開啟的比賽
      * @apiName GetMyGames
@@ -32,9 +42,17 @@ Route::middleware('auth:api')->group(function () {
      *          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI....."
      *      }
      */
-    Route::get('/my/games', function () {
-        return Auth::user()->games;
-    });
+    Route::get('/my/games', 'GameController@index');
+
+   /**
+     * @api {delete} /my/game/:id Delete game of user
+     * @apiDescription 刪除使用者開啟的比賽
+     * @apiName DeleteMyGame
+     * @apiGroup Game
+     * @apiParam (id) {Number} id Games unique ID.
+     *
+     */
+    Route::delete('/my/game/{game_id}', 'GameController@delete');
 
     /**
      * @api {get} /my/visit/games Get visit games of user
@@ -44,7 +62,7 @@ Route::middleware('auth:api')->group(function () {
      *
      */
     Route::get('/my/visit/games', function () {
-        return Auth::user()->visits;
+        return Auth::user()->games()->wherePivot('home', false)->get()->load('region');
     });
 
     /**
@@ -55,19 +73,7 @@ Route::middleware('auth:api')->group(function () {
      * @apiParam (id) {Number} id Games unique ID.
      */
     Route::post('/my/visit/game/{game_id}', function ($game_id) {
-        return App\Game::findOrFail($game_id)->visits()->attach(1);
-    });
-
-    /**
-     * @api {post} /my/region/:id/games Create game in region
-     * @apiDescription 新增區域的比賽
-     * @apiName PostMyRegionGames
-     * @apiGroup Game
-     * @apiParam (id) {Number} id Regions unique ID.
-     * @apiUse Games
-     */
-    Route::post('/my/region/{region_id}/games', function ($region_id) {
-        return App\User::findOrFail(1)->games()->create(['region_id' => $region_id]);
+        Auth::user()->games()->attach($game_id, ['home' => false]);
     });
 });
 
@@ -109,7 +115,7 @@ Route::get('/regions', function () {
 });
 
 /**
- * @api {post} /oauth/token Get Token
+ * @api {post} //auth/token Get access token
  * @apiDescription 取得登入權杖
  * @apiName GetOauthToken
  * @apiGroup Auth

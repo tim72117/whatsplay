@@ -15,8 +15,14 @@ class PlayVisit extends Pivot
     protected $table = 'play_visit';
 
     protected $visible = [
+        'home',
         'match',
     ];
+
+    public function getHomeAttribute($value)
+    {
+        return (boolean) $value;
+    }
 
     public function getMatchAttribute($value)
     {

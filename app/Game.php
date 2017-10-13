@@ -21,11 +21,16 @@ class Game extends Model
      * @var array
      */
     protected $hidden = [
-        'user_id',
+        'region_id',
     ];
 
     public function visits()
     {
         return $this->belongsToMany(User::class, 'play_visit')->using(PlayVisit::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
     }
 }

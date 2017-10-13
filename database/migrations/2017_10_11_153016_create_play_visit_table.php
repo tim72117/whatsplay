@@ -16,6 +16,7 @@ class CreatePlayVisitTable extends Migration
         Schema::create('play_visit', function (Blueprint $table) {
             $table->integer('game_id');
             $table->integer('user_id');
+            $table->boolean('home')->default(false);
             $table->boolean('match')->default(false);
         });
     }

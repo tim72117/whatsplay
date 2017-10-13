@@ -38,8 +38,14 @@ app = angular.module('app', ['jsonFormatter'])
             'method': 'GET'
         },
         {
-            'url': '/my/games',
-            'method': 'GET'
+            'url': '/my/game/{game_id}',
+            'method': 'DELETE',
+            'options': [
+                'game_id'
+            ],
+            'setter': function(api) {
+                 return '/my/game/' + $scope.input[this.options[0]]
+            }
         },
         {
             'url': '/my/visit/game/{game_id}',
@@ -50,6 +56,16 @@ app = angular.module('app', ['jsonFormatter'])
             'setter': function(api) {
                 console.log($scope.input);
                  return '/my/visit/game/' + $scope.input[this.options[0]]
+            }
+        },
+        {
+            'url': '/region/{region_id}/games',
+            'method': 'GET',
+            'options': [
+                'region_id'
+            ],
+            'setter': function(api) {
+                 return '/region/' + $scope.input[this.options[0]] + '/games'
             }
         },
         {
@@ -68,8 +84,9 @@ app = angular.module('app', ['jsonFormatter'])
     </script>
 </head>
 <body ng-controller="mainController">
+    <?=1?>
     <select ng-model="api">
-        <option ng-repeat="api in apis" ng-value="api">{{ api.url }}</option>
+        <option ng-repeat="api in apis" ng-value="api">{{ api.method + '  ' + api.url }}</option>
     </select>
     <button ng-click="test(api)">送出</button>
     <label ng-repeat="option in api.options"><input type="text" ng-model="input[option]">{{ option }}</label>
