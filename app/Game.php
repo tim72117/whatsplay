@@ -12,7 +12,7 @@ class Game extends Model
      * @var array
      */
      protected $fillable = [
-        'region_id',
+        'region_id', 'title', 'position', 'start_at'
     ];
 
     /**
@@ -24,13 +24,18 @@ class Game extends Model
         'region_id',
     ];
 
-    public function visits()
+    public function players()
     {
-        return $this->belongsToMany(User::class, 'play_visit')->using(PlayVisit::class);
+        return $this->belongsToMany(User::class, 'play_visit')->as('play')->using(PlayVisit::class)->withPivot('home', 'approve');
     }
 
     public function region()
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function getClosedAttribute($value)
+    {
+        return (boolean) $value;
     }
 }

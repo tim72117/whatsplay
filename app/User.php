@@ -25,11 +25,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'updated_at', 'created_at'
     ];
 
     public function games()
     {
-        return $this->belongsToMany(Game::class, 'play_visit')->using(PlayVisit::class)->withPivot('home', 'match');
+        return $this->belongsToMany(Game::class, 'play_visit')->as('play')->using(PlayVisit::class)->withPivot('home', 'approve');
     }
 }

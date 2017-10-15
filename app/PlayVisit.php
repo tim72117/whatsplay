@@ -16,7 +16,7 @@ class PlayVisit extends Pivot
 
     protected $visible = [
         'home',
-        'match',
+        'approve',
     ];
 
     public function getHomeAttribute($value)
@@ -24,7 +24,7 @@ class PlayVisit extends Pivot
         return (boolean) $value;
     }
 
-    public function getMatchAttribute($value)
+    public function getApproveAttribute($value)
     {
         return (boolean) $value;
     }

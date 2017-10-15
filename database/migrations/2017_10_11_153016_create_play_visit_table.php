@@ -17,7 +17,7 @@ class CreatePlayVisitTable extends Migration
             $table->integer('game_id');
             $table->integer('user_id');
             $table->boolean('home')->default(false);
-            $table->boolean('match')->default(false);
+            $table->boolean('approve')->default(false);
         });
     }
 
